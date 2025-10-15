@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="lista-de-desejos.png" type="image/png">
   <title>Lista de Compras</title>
-  
-  <!-- Materialize CSS (Google) -->
+
+  <!-- Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -15,59 +15,64 @@
 </head>
 <body>
 
+  <!-- Navbar responsiva -->
   <nav class="blue darken-1">
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo">Lista de Compras</a>
-      <ul id="nav-mobile" class="right">
+      <a href="#" data-target="mobile-menu" class="sidenav-trigger right">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a id="openSavedBtn" href="#savedModal" class="modal-trigger"><i class="material-icons left">folder_open</i>Listas Salvas</a></li>
         <li><a id="installBtn" href="#"><i class="material-icons left">file_download</i>Instalar</a></li>
       </ul>
     </div>
   </nav>
 
-  <main>
+  <!-- Menu lateral para mobile -->
+  <ul class="sidenav" id="mobile-menu">
+    <li><a id="openSavedBtnMobile" href="#savedModal" class="modal-trigger"><i class="material-icons left">folder_open</i>Listas Salvas</a></li>
+    <li><a id="installBtnMobile" href="#"><i class="material-icons left">file_download</i>Instalar</a></li>
+  </ul>
+
+  <main class="container">
     <div class="card">
       <div class="card-content">
         <span class="card-title">Cadastrar Produto</span>
 
-        <div class="row">
-          <form id="productForm" class="col s12">
-            <div class="row">
-              <div class="input-field col s12 m5">
-                <input id="productName" type="text" required>
-                <label for="productName">Nome do Produto</label>
-              </div>
+        <form id="productForm" class="row">
+          <div class="input-field col s12 m5">
+            <input id="productName" type="text" required>
+            <label for="productName">Nome do Produto</label>
+          </div>
 
-              <div class="input-field col s6 m2">
-                <input id="productQty" type="number" min="1" value="1" required>
-                <label for="productQty">Quantidade</label>
-              </div>
+          <div class="input-field col s6 m2">
+            <input id="productQty" type="number" min="1" value="1" required>
+            <label for="productQty">Quantidade</label>
+          </div>
 
-              <div class="input-field col s6 m3">
-                <input id="productPrice" type="number" min="0" step="0.01" value="0.00" required>
-                <label for="productPrice">Valor Unitário (R$)</label>
-              </div>
+          <div class="input-field col s6 m3">
+            <input id="productPrice" type="number" min="0" step="0.01" value="0.00" required>
+            <label for="productPrice">Valor Unitário (R$)</label>
+          </div>
 
-              <div class="col s12 m2" style="display:flex;align-items:center;">
-                <button class="btn waves-effect waves-light" type="submit">
-                  Adicionar <i class="material-icons right">add_shopping_cart</i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
+          <div class="col s12 m2 center-align">
+            <button class="btn waves-effect waves-light" type="submit">
+              Adicionar <i class="material-icons right">add_shopping_cart</i>
+            </button>
+          </div>
+        </form>
 
         <div class="divider"></div>
 
         <div style="margin-top:16px">
           <h6>Produtos na Lista</h6>
-
           <ul id="productList" class="collection"></ul>
 
-          <div class="actions">
-            <strong>Total da Compra: R$ <span id="grandTotal">0.00</span></strong>
+          <div class="actions center-align">
+            <p><strong>Total da Compra: R$ <span id="grandTotal">0.00</span></strong></p>
 
-            <div>
+            <div class="btn-group">
               <button id="clearBtn" class="btn red lighten-1 waves-effect waves-light">
                 Apagar Tudo <i class="material-icons right">delete_forever</i>
               </button>
@@ -92,8 +97,13 @@
     </div>
   </div>
 
-  <!-- Materialize JS -->
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      M.AutoInit(); // inicializa todos os componentes Materialize
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
